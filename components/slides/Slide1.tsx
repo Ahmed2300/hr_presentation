@@ -1,13 +1,12 @@
-
 import React from 'react';
 import AnimatedBackground from '../AnimatedBackground';
 
 const teamMembers = [
   { name: 'Abdallah', role: 'Team Leader', image: 'https://iili.io/Ku2Unmg.png' },
-  { name: 'Noor', role: 'Login & Settings', image: 'https://sfile.chatglm.cn/images-ppt/9b96cc928d2d.jpg' },
+  { name: 'Noor', role: 'Login & Settings', image: 'https://iili.io/KuGDkkx.png' },
   { name: 'Khaled', role: 'Security & Tasks', image: 'https://iili.io/Ku24Krl.png' },
   { name: 'Ahmed', role: 'HR System', image: 'https://i.ibb.co/LhYKfJpn/1704392526630.jpg' },
-  { name: 'Amira', role: 'Manager System', image: 'https://sfile.chatglm.cn/images-ppt/fb0d7287a950.jpg' },
+  { name: 'Amira', role: 'Manager System', image: 'https://iili.io/KuGmcN4.png' },
 ];
 
 const projectStats = [

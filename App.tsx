@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { createRoot } from 'react-dom/client';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -13,7 +14,13 @@ import Slide10 from './components/slides/Slide10';
 import Slide11 from './components/slides/Slide11';
 import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
+import Slide14 from './components/slides/Slide14';
+import Slide15 from './components/slides/Slide15';
 import FullscreenImageViewer from './components/FullscreenImageViewer';
+
+// Declare libraries from CDN for TypeScript
+declare const html2canvas: any;
+declare const jspdf: any;
 
 const App: React.FC = () => {
   const [slideState, setSlideState] = useState({
@@ -22,6 +29,7 @@ const App: React.FC = () => {
     direction: 'none' as 'next' | 'prev' | 'jump' | 'none',
   });
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
 
   const openFullscreen = (src: string) => setFullscreenImage(src);
   const closeFullscreen = useCallback(() => setFullscreenImage(null), []);
@@ -38,9 +46,60 @@ const App: React.FC = () => {
     <Slide9 key="9" openFullscreen={openFullscreen} />,
     <Slide10 key="10" openFullscreen={openFullscreen} />,
     <Slide11 key="11" openFullscreen={openFullscreen} />,
-    <Slide12 key="12" />,
-    <Slide13 key="13" />,
+    <Slide12 key="12" openFullscreen={openFullscreen} />,
+    <Slide13 key="13" openFullscreen={openFullscreen} />,
+    <Slide14 key="14" />,
+    <Slide15 key="15" />,
   ];
+
+  const exportToPDF = useCallback(async () => {
+    setIsExporting(true);
+
+    const { jsPDF } = jspdf;
+    const pdf = new jsPDF('landscape', 'px', [1280, 720]);
+    const exportContainer = document.getElementById('pdf-export-container');
+
+    if (!exportContainer) {
+      console.error('Export container not found!');
+      setIsExporting(false);
+      return;
+    }
+    
+    const exportRoot = createRoot(exportContainer);
+
+    for (let i = 0; i < slides.length; i++) {
+      const slide = slides[i];
+      
+      await new Promise<void>(resolve => {
+        exportRoot.render(slide);
+        // Wait for rendering and animations (like charts)
+        setTimeout(resolve, 500); 
+      });
+
+      exportContainer.classList.add('is-exporting-pdf');
+
+      const canvas = await html2canvas(exportContainer, {
+        scale: 2, // Higher scale for better quality
+        useCORS: true,
+        allowTaint: true,
+      });
+
+      exportContainer.classList.remove('is-exporting-pdf');
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      
+      if (i > 0) {
+        pdf.addPage([1280, 720], 'landscape');
+      }
+      
+      pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
+    }
+    
+    pdf.save('presentation.pdf');
+    exportRoot.render(null); // Clear the container
+    setIsExporting(false);
+
+  }, [slides]);
 
   const nextSlide = useCallback(() => {
     setSlideState(prev => {
@@ -75,15 +134,33 @@ const App: React.FC = () => {
         if (e.key === 'Escape') closeFullscreen();
         return;
       }
+
+      // PDF Export Shortcut
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        exportToPDF();
+        return;
+      }
+      
       if (e.key === 'ArrowRight') nextSlide();
       else if (e.key === 'ArrowLeft') prevSlide();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, fullscreenImage, closeFullscreen]);
+  }, [nextSlide, prevSlide, fullscreenImage, closeFullscreen, exportToPDF]);
 
   return (
     <main className="w-screen h-screen bg-gray-900 flex justify-center items-center overflow-hidden p-2 sm:p-4">
+      {isExporting && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex flex-col justify-center items-center text-white">
+          <svg className="animate-spin h-10 w-10 text-white mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <h2 className="text-2xl font-semibold">Exporting to PDF...</h2>
+          <p className="mt-2">This may take a few moments.</p>
+        </div>
+      )}
       <div className="w-full max-w-[1280px] aspect-[16/9] relative shadow-2xl rounded-lg overflow-hidden" style={{ perspective: '1500px' }}>
         
         {slides.map((slide, index) => {

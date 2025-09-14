@@ -1,78 +1,72 @@
-
 import React from 'react';
 import AnimatedBackground from '../AnimatedBackground';
 import BaseChart from '../charts/BaseChart';
+import ImageWithFullscreen from '../ImageWithFullscreen';
 
-const projectChartConfig = {
+interface SlideProps {
+    openFullscreen: (src: string) => void;
+}
+
+const approvalsChartConfig = {
     type: 'doughnut',
     data: {
-        labels: ['Employee', 'Login', 'Tasks', 'HR', 'Manager'],
+        labels: ['Pending', 'Approved', 'Rejected'],
         datasets: [{
-            data: [20, 15, 15, 25, 25],
-            backgroundColor: ['#ffcc80', '#81d4fa', '#b2dfdb', '#f8bbd0', '#ffccbc'],
-            borderColor: ['#5c6bc0'],
-            borderWidth: 0
+            data: [12, 45, 3],
+            backgroundColor: ['rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)', 'rgba(255, 99, 132, 0.7)'],
+            borderColor: ['#ffce56', '#4bc0c0', '#ff6384'],
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: {
-                position: 'right',
-                labels: { color: 'rgba(255, 255, 255, 0.8)', font: { size: 10 }, padding: 10 }
-            }
+            legend: { position: 'right', labels: { color: 'rgba(255, 255, 255, 0.8)', padding: 10, font: {size: 10} } },
+            title: { display: true, text: 'Request Statuses', color: 'rgba(255, 255, 255, 0.9)', font: { size: 12 } }
         }
     }
 };
 
-const Slide12: React.FC = () => {
+const Slide12: React.FC<SlideProps> = ({ openFullscreen }) => {
     return (
-        <div className="w-full h-full relative overflow-hidden bg-[linear-gradient(135deg,_#5c6bc0_0%,_#3949ab_100%)] text-white">
-            <div className="absolute inset-0 bg-[url('https://iili.io/Ku2V28Q.png')] bg-cover bg-center opacity-10 z-0"></div>
+        <div className="w-full h-full relative overflow-hidden bg-[linear-gradient(135deg,_#ff7043_0%,_#e64a19_100%)] text-white">
+            <div className="absolute inset-0 bg-[url('https://iili.io/Ku2TNM7.png')] bg-cover bg-center opacity-10 z-0"></div>
             <AnimatedBackground />
             <div className="relative z-10 flex flex-col h-full p-4 md:p-8 lg:p-10">
                 <header className="flex items-center mb-4 md:mb-8">
-                    <img src="https://iili.io/Ku2Unmg.png" alt="Abdallah" className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full object-cover border-2 md:border-4 border-white shadow-lg mr-3 md:mr-5" />
+                    <img src="https://iili.io/KuGmcN4.png" alt="Amira" className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full object-cover border-2 md:border-4 border-white shadow-lg mr-3 md:mr-5" />
                     <div>
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-indigo-200 text-transparent bg-clip-text">Project Summary</h2>
-                        <p className="text-sm md:text-base lg:text-lg text-indigo-100">Presented by Abdallah</p>
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-orange-200 text-transparent bg-clip-text">Manager System: Part 1</h2>
+                        <p className="text-sm md:text-base lg:text-lg text-orange-100">Approvals Queue</p>
                     </div>
                 </header>
                 <div className="flex flex-col lg:flex-row flex-grow gap-4 md:gap-8">
                     <div className="w-full lg:flex-1 flex flex-col gap-3 md:gap-5">
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 md:p-5 transition-all duration-300 hover:bg-white/15">
-                            <h3 className="text-lg md:text-2xl font-semibold mb-3 flex items-center"><i className="fas fa-chart-line mr-3 text-amber-300"></i>Achievements</h3>
-                            <div className="grid grid-cols-2 gap-2 md:gap-4">
-                                <div className="bg-white/10 rounded-lg p-2 md:p-4 text-center hover:bg-white/20 transition-colors"><div className="text-2xl md:text-4xl font-bold text-amber-300">12</div><div className="text-[10px] md:text-sm uppercase tracking-wider text-indigo-100">HTML Pages</div></div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-4 text-center hover:bg-white/20 transition-colors"><div className="text-2xl md:text-4xl font-bold text-amber-300">31</div><div className="text-[10px] md:text-sm uppercase tracking-wider text-indigo-100">JS Files</div></div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-4 text-center hover:bg-white/20 transition-colors"><div className="text-2xl md:text-4xl font-bold text-amber-300">9</div><div className="text-[10px] md:text-sm uppercase tracking-wider text-indigo-100">CSS Files</div></div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-4 text-center hover:bg-white/20 transition-colors"><div className="text-2xl md:text-4xl font-bold text-amber-300">4</div><div className="text-[10px] md:text-sm uppercase tracking-wider text-indigo-100">User Roles</div></div>
+                        <div className="bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 md:p-6 flex-grow flex flex-col justify-center transition-all duration-300 hover:bg-white/15">
+                            <div className="flex items-center mb-2 md:mb-4"><i className="fas fa-clipboard-check text-xl md:text-3xl mr-2 md:mr-4 text-amber-300"></i><h3 className="text-xl md:text-3xl font-semibold">Approval Features</h3></div>
+                            <div className="grid grid-cols-2 gap-2 md:gap-4 text-xs md:text-base lg:text-lg">
+                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-chart-line mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Stats</span></div>
+                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-table mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Req. table</span></div>
+                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-check-circle mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Workflow</span></div>
+                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-comment mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Comments</span></div>
+                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors col-span-2 flex items-center"><i className="fas fa-filter mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Filter</span> by request type</div>
                             </div>
                         </div>
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 md:p-5 transition-all duration-300 hover:bg-white/15">
-                             <h3 className="text-lg md:text-2xl font-semibold mb-3 flex items-center"><i className="fas fa-code mr-3 text-amber-300"></i>Technologies</h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3 text-xs md:text-base">
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fab fa-html5 text-lg md:text-2xl mr-2 text-sky-300"></i> HTML5</div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fab fa-css3-alt text-lg md:text-2xl mr-2 text-sky-300"></i> CSS3</div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fab fa-bootstrap text-lg md:text-2xl mr-2 text-sky-300"></i> Bootstrap</div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fab fa-js text-lg md:text-2xl mr-2 text-sky-300"></i> JavaScript</div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fas fa-calendar-alt text-lg md:text-2xl mr-2 text-sky-300"></i> FullCalendar</div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-3 flex items-center hover:bg-white/20 transition-colors"><i className="fas fa-chart-bar text-lg md:text-2xl mr-2 text-sky-300"></i> Chart.js</div>
-                            </div>
-                        </div>
+                        <div className="h-32 md:h-40 lg:h-48 mt-auto"><BaseChart config={approvalsChartConfig as any} /></div>
                     </div>
-                    <div className="w-full lg:flex-1 flex flex-col gap-3 md:gap-5">
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 md:p-5 flex-grow flex flex-col transition-all duration-300 hover:bg-white/15">
-                            <h3 className="text-lg md:text-2xl font-semibold mb-3 flex items-center"><i className="fas fa-tasks mr-3 text-amber-300"></i>Feature Distribution</h3>
-                            <div className="flex-grow h-40 md:h-64"><BaseChart config={projectChartConfig as any} /></div>
+                    <div className="w-full lg:flex-1 flex flex-col justify-center items-center relative">
+                        <ImageWithFullscreen
+                            src="https://iili.io/Ku2TNM7.png"
+                            alt="Manager Approvals Interface"
+                            className="w-full max-w-sm lg:max-w-lg rounded-xl lg:rounded-2xl shadow-2xl border-2 md:border-4 border-white transition-all duration-300 group-hover:scale-105"
+                            onImageClick={openFullscreen}
+                        />
+                        <div className="absolute top-2 right-2 md:top-5 md:right-5 bg-white/15 backdrop-blur-sm rounded-full w-20 h-20 md:w-28 md:h-28 flex flex-col justify-center items-center shadow-lg p-2">
+                             <div className="text-2xl md:text-4xl font-bold text-amber-300">24h</div>
+                             <div className="text-[10px] md:text-sm text-orange-100 text-center uppercase">Response</div>
                         </div>
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 md:p-5 flex items-center justify-center text-center transition-all duration-300 hover:bg-white/15">
-                            <div>
-                                <h3 className="text-xl md:text-3xl font-bold text-amber-300">Thank You!</h3>
-                                <p className="text-sm md:text-lg text-indigo-100 mt-1">Ready for questions</p>
-                            </div>
-                        </div>
+                        <div className="mt-2 md:mt-4 text-sm md:text-lg text-center text-orange-100">Streamlined approval process for managers</div>
                     </div>
                 </div>
             </div>
