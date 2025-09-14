@@ -50,7 +50,6 @@ const Slide12: React.FC<SlideProps> = ({ openFullscreen }) => {
                                 <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-table mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Req. table</span></div>
                                 <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-check-circle mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Workflow</span></div>
                                 <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors flex items-center"><i className="fas fa-comment mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Comments</span></div>
-                                <div className="bg-white/10 rounded-lg p-2 md:p-4 hover:bg-white/20 transition-colors col-span-2 flex items-center"><i className="fas fa-filter mr-3 text-orange-200 w-6 text-center"></i><span className="font-semibold text-amber-300">Filter</span> by request type</div>
                             </div>
                         </div>
                         <div className="h-32 md:h-40 lg:h-48 mt-auto"><BaseChart config={approvalsChartConfig as any} /></div>

@@ -14,6 +14,7 @@ import Slide10 from './components/slides/Slide10';
 import Slide11 from './components/slides/Slide11';
 import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
+import SlideManagerTasks from './components/slides/SlideManagerTasks';
 import Slide14 from './components/slides/Slide14';
 import Slide15 from './components/slides/Slide15';
 import FullscreenImageViewer from './components/FullscreenImageViewer';
@@ -48,6 +49,7 @@ const App: React.FC = () => {
     <Slide11 key="11" openFullscreen={openFullscreen} />,
     <Slide12 key="12" openFullscreen={openFullscreen} />,
     <Slide13 key="13" openFullscreen={openFullscreen} />,
+    <SlideManagerTasks key="13a" openFullscreen={openFullscreen} />,
     <Slide14 key="14" />,
     <Slide15 key="15" />,
   ];
