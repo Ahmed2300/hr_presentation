@@ -48,24 +48,24 @@ const SlideManagerTasks: React.FC<SlideProps> = ({ openFullscreen }) => {
                     <div className="w-full lg:w-1/2 flex flex-col gap-3 md:gap-4 justify-center">
                         <FeatureSection title="Task Assignment & Tracking">
                             <SubFeature icon="fa-plus-circle" title="Assign Tasks with Ease">
-                                Create and assign tasks with details like title, priority, and due date.
+                                Create tasks with title, priority, & due date.
                             </SubFeature>
                              <SubFeature icon="fa-columns" title="Visual Kanban Board">
-                                Monitor task progress on an interactive Kanban board from 'To-Do' to 'Done'.
+                                Track progress on a visual Kanban board.
                             </SubFeature>
                             <SubFeature icon="fa-sort-amount-up" title="Task Prioritization">
-                                Set priority levels (Low, High, Critical) to focus team efforts on key tasks.
+                                Set priority levels (Low, High, Critical) to focus team.
                             </SubFeature>
                         </FeatureSection>
                         <FeatureSection title="Managerial Oversight & Control">
                              <SubFeature icon="fa-bell" title='"Needs Attention" Section'>
-                                Dashboard flags overdue tasks and extension requests for manager review.
+                                Flags overdue tasks & extension requests.
                             </SubFeature>
                             <SubFeature icon="fa-exclamation-triangle" title="Overdue Task Management">
-                               Automatically highlights overdue tasks and shows how many days they are late.
+                               Highlights overdue tasks and days late.
                             </SubFeature>
                             <SubFeature icon="fa-check-double" title="Extension Request Workflow">
-                                Review and approve/reject deadline extension requests with a single click.
+                                One-click approval for extension requests.
                             </SubFeature>
                         </FeatureSection>
                     </div>
