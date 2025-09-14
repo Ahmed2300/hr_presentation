@@ -83,8 +83,8 @@ const App: React.FC = () => {
   }, [nextSlide, prevSlide, fullscreenImage, closeFullscreen]);
 
   return (
-    <main className="w-screen h-screen bg-gray-900 flex justify-center items-center overflow-hidden p-4">
-      <div className="w-full h-full max-w-[1280px] max-h-[720px] aspect-[16/9] relative shadow-2xl rounded-lg overflow-hidden" style={{ perspective: '1500px' }}>
+    <main className="w-screen h-screen bg-gray-900 flex justify-center items-center overflow-hidden p-2 sm:p-4">
+      <div className="w-full max-w-[1280px] aspect-[16/9] relative shadow-2xl rounded-lg overflow-hidden" style={{ perspective: '1500px' }}>
         
         {slides.map((slide, index) => {
           const isCurrent = index === slideState.current;
@@ -115,20 +115,20 @@ const App: React.FC = () => {
         })}
         
         {/* Navigation Arrows */}
-        <button onClick={prevSlide} className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex justify-center items-center transition-all duration-300 z-20 backdrop-blur-sm">
-          <i className="fas fa-chevron-left"></i>
+        <button onClick={prevSlide} className="absolute top-1/2 left-1 sm:left-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex justify-center items-center transition-all duration-300 z-20 backdrop-blur-sm">
+          <i className="fas fa-chevron-left text-xs md:text-base"></i>
         </button>
-        <button onClick={nextSlide} className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex justify-center items-center transition-all duration-300 z-20 backdrop-blur-sm">
-          <i className="fas fa-chevron-right"></i>
+        <button onClick={nextSlide} className="absolute top-1/2 right-1 sm:right-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex justify-center items-center transition-all duration-300 z-20 backdrop-blur-sm">
+          <i className="fas fa-chevron-right text-xs md:text-base"></i>
         </button>
 
         {/* Navigation Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-20">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 slideState.current === index ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/60'
               }`}
             />
