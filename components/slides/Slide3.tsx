@@ -31,19 +31,27 @@ const Slide3: React.FC = () => {
                 <div className="flex flex-col lg:flex-row flex-grow gap-4 lg:gap-8">
                     <div className="flex-[3] relative bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 md:p-5 min-h-[250px] md:min-h-0">
                         <svg width="100%" height="100%" className="absolute top-0 left-0 z-0">
-                            <line x1="50%" y1="25%" x2="25%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
-                            <line x1="50%" y1="25%" x2="75%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
-                            <line x1="25%" y1="50%" x2="50%" y2="75%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
-                            <line x1="75%" y1="50%" x2="50%" y2="75%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
+                            {/* Lines from roles to central database */}
+                            <line x1="50%" y1="25%" x2="50%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
+                            <line x1="25%" y1="50%" x2="50%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
+                            <line x1="75%" y1="50%" x2="50%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
+                            <line x1="50%" y1="75%" x2="50%" y2="50%" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
                         </svg>
+                        
+                        {/* 4 Roles */}
                         <ComponentCircle icon="fa-user" title="Employee" desc="Attendance & Requests" className="top-[10%] left-1/2 -translate-x-1/2" />
                         <ComponentCircle icon="fa-user-tie" title="Manager" desc="Approvals & Team" className="top-1/2 left-[15%] -translate-y-1/2" />
                         <ComponentCircle icon="fa-users-cog" title="HR" desc="Payroll & Analytics" className="top-1/2 right-[15%] -translate-y-1/2" />
-                        <ComponentCircle icon="fa-database" title="Database" desc="Central Storage" className="bottom-[10%] left-1/2 -translate-x-1/2" />
-                        <div className="absolute top-[30%] left-[35%] text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full">Requests</div>
-                        <div className="absolute top-[30%] left-[55%] text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full">Data</div>
-                        <div className="absolute top-[60%] left-[30%] text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full">Approvals</div>
-                        <div className="absolute top-[60%] left-[55%] text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full">Analytics</div>
+                        <ComponentCircle icon="fa-shield-alt" title="Security" desc="Attendance Monitoring" className="bottom-[10%] left-1/2 -translate-x-1/2" />
+                        
+                        {/* Central Database */}
+                        <ComponentCircle icon="fa-database" title="Database" desc="Central Storage" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !w-24 !h-24 md:!w-28 md:!h-28 lg:!w-32 lg:!h-32" />
+
+                        {/* Data Flow Labels */}
+                        <div className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full z-20">Requests & Data</div>
+                        <div className="absolute top-1/2 left-[35%] -translate-y-1/2 text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full z-20">Approvals</div>
+                        <div className="absolute top-1/2 right-[35%] -translate-y-1/2 text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full z-20">Analytics</div>
+                        <div className="absolute top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] md:text-sm text-amber-300 bg-[#5c6bc0]/80 px-2 py-1 rounded-full z-20">Attendance Data</div>
                     </div>
                     <div className="flex-[2] flex flex-col gap-2 md:gap-4 justify-center">
                         <FeatureCard icon="fa-sync-alt" title="Real-time Sync" desc="Instant data updates across all roles"/>
