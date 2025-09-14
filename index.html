@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR System Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        /* Slide Transition Animations */
+        @keyframes enterFromRight {
+            from { transform: translateX(50%) rotateY(-30deg) scale(0.9); opacity: 0; }
+            to { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+        }
+        .animate-enter-from-right {
+            animation: enterFromRight 0.7s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes exitToLeft {
+            from { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+            to { transform: translateX(-50%) rotateY(30deg) scale(0.9); opacity: 0; }
+        }
+        .animate-exit-to-left {
+            animation: exitToLeft 0.7s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes enterFromLeft {
+            from { transform: translateX(-50%) rotateY(30deg) scale(0.9); opacity: 0; }
+            to { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+        }
+        .animate-enter-from-left {
+            animation: enterFromLeft 0.7s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes exitToRight {
+            from { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+            to { transform: translateX(50%) rotateY(-30deg) scale(0.9); opacity: 0; }
+        }
+        .animate-exit-to-right {
+            animation: exitToRight 0.7s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
+        }
+        .animate-fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "chart.js": "https://aistudiocdn.com/chart.js@^4.5.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
